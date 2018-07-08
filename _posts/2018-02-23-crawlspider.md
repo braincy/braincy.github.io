@@ -48,10 +48,8 @@ from scrapy.http import Request, HtmlResponse
 from scrapy.utils.spider import iterate_spider_output
 from scrapy.spiders import Spider
 
-
 def identity(x):
     return x
-
 
 class Rule(object):
 
@@ -65,7 +63,6 @@ class Rule(object):
             self.follow = False if callback else True
         else:
             self.follow = follow
-
 
 class CrawlSpider(Spider):
 
@@ -161,12 +158,10 @@ from scrapy.utils.deprecate import create_deprecated_class
 from scrapy.exceptions import ScrapyDeprecationWarning
 from scrapy.utils.deprecate import method_is_overridden
 
-
 class Spider(object_ref):
     """Base class for scrapy spiders. All spiders must inherit from this
     class.
     """
-
     name = None
     custom_settings = None
 
@@ -283,10 +278,9 @@ from scrapy.spiders.sitemap import SitemapSpider
 ### CrawlSpider如何工作的？
 因为CrawlSpider继承了Spider，所以具有Spider的所有函数。
 
-首先由start_requests对start_urls中的每一个url发起请求(make_requests_from_url)$\{Spider源码：69～87行\}$，这个请求会被parse接收。
+首先由start_requests对start_urls中的每一个url发起请求(make_requests_from_url)**[Spider源码：69～87行]**，这个请求会被parse接收。
 
-在Spider里面的parse需要我们定义，但CrawlSpider要通过parse去解析响应(self._parse_response)$\{CrawlSpider源码：42～43行\}$，_parse_response根据有无callback，follow和self.follow_links执行不同的操作$\{CrawlSpider源码：74～83行\}$。
-其中_requests_to_follow又会获取link_extractor(这个是我们传入的LinkExtractor)解析页面得到的link(link_extractor.extract_links(response))$\{CrawlSpider源码:61～62行\}$，对url进行加工(process_links,需要自定义)$\{CrawlSpider源码:63～64行\}$，对符合的link发起Request$\{CrawlSpider源码:51～54行,67行\}$。使用process_request(需要自定义)处理响应$\{CrawlSpider源码:68行\}$。
-
+在Spider里面的parse需要我们定义，但CrawlSpider要通过parse去解析响应( `self._parse_response` )**[CrawlSpider源码：42～43行**]，_parse_response根据有无 `callback`，`follow` 和 `self.follow_links` 执行不同的操作**[CrawlSpider源码：74～83行**]。
+其中_requests_to_follow又会获取 `link_extractor`(这个是我们传入的LinkExtractor)解析页面得到的link( `link_extractor.extract_links(response)` )**[CrawlSpider源码:61～62行**]，对url进行加工( `process_links`,需要自定义)**[CrawlSpider源码:63～64行**]，对符合的link发起 `Request` **[CrawlSpider源码:51～54行,67行**]。使用 `process_request`(需要自定义)处理响应**[CrawlSpider源码:68行**]。
 ### CrawlSpider如何获取rules？
-CrawlSpider类会在init方法中调用_compile_rules方法，然后在其中浅拷贝rules中的各个Rule获取要用于回调(callback)，要进行处理的链接(process_links)和要进行的处理请求(process_request)$\{CrawlSpider源码:85～96行\}$。
+CrawlSpider类会在init方法中调用 `_compile_rules` 方法，然后在其中浅拷贝rules中的各个Rule获取要用于回调(callback)，要进行处理的链接( `process_links` )和要进行的处理请求( `process_request` )**[CrawlSpider源码:85～96行**]。

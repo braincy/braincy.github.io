@@ -17,9 +17,9 @@ mathjax: true
 
 ## Scrapy架构图
 
-我之前写过一篇博客：[Scrapy框架介绍](https://braincy.top/2018/01/21/scrapy-intro/)，在这里已经对Scrapy做了一些介绍，其中也包含了一张Scrapy的[流程图](http://ouy59qaqh.bkt.clouddn.com/scrapy_2.png)，但那上面并没有标注顺序，为了从源码的角度进一步理解Scrapy，我选择下面这张Scrapy架构图。
+我之前写过一篇博客：[Scrapy框架介绍](https://braincy.top/2018/01/21/scrapy-intro/)，在这里已经对Scrapy做了一些介绍，其中也包含了一张Scrapy的[流程图](/img/scrapy_2.png)，但那上面并没有标注顺序，为了从源码的角度进一步理解Scrapy，我选择下面这张Scrapy架构图。
 
-![scrapy架构图](http://ouy59qaqh.bkt.clouddn.com/scrapy-graph.png)
+![scrapy架构图](/img/scrapy-graph.png)
 
 ### 核心组件
 Scrapy有以下几大组件：

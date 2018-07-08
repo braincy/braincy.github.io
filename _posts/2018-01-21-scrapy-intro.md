@@ -21,7 +21,7 @@ Scrapy是一个为了爬取网站数据, 提取结构性数据而编写的应用
 
 ## Scrapy流程图
 
-![Scrapy执行流程](http://ouy59qaqh.bkt.clouddn.com/scrapy_2.png)
+![Scrapy执行流程](/img/scrapy_2.png)
 
 上图包括了Scrapy的主要组件及系统的数据处理流程（绿色箭头所示）。
 Scrapy数据流是由执行的核心引擎(Engine)控制，流程是这样的：
@@ -49,7 +49,7 @@ Scrapy数据流是由执行的核心引擎(Engine)控制，流程是这样的：
 >scrapy startproject tutorial
 
 该命令将会创建包含下列内容的 `tutorial` 目录:
-![tutorial目录](http://ouy59qaqh.bkt.clouddn.com/scrapy_1.png)
+![tutorial目录](/img/scrapy_1.png)
 
 ### 这些文件分别是:
 * `scrapy.cfg` : 项目的配置文件。
@@ -66,7 +66,6 @@ Item 是保存爬取到的数据的容器；其使用方法和python字典类似
 
 ```python
 import scrapy
-
 class DmozItem(scrapy.Item):
     title = scrapy.Field()
     link  = scrapy.Field()
@@ -85,7 +84,6 @@ Spider是用户编写用于从单个网站(或者一些网站)爬取数据的类
 以下为我们的第一个Spider代码，保存在 tutorial/spiders 目录下的 dmoz_spider.py 文件中:
 ```python
 import scrapy
-
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
     allowed_domains = ["dmoz.org"]
@@ -93,7 +91,6 @@ class DmozSpider(scrapy.Spider):
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
     ]
-
     def parse(self, response):
         filename = response.url.split("/")[-2]
         with open(filename, 'wb') as f:
@@ -106,7 +103,7 @@ class DmozSpider(scrapy.Spider):
 
 `crawl dmoz` 启动用于爬取 `dmoz.org` 的spider，您将得到类似的输出:
 
-![运行结果](http://ouy59qaqh.bkt.clouddn.com/scrapy_3.png)
+![运行结果](/img/scrapy_3.png)
 
 查看包含 `[dmoz]` 的输出，可以看到输出的log中包含定义在 `start_urls` 的初始URL，并且与spider中是一一对应的。
 
@@ -117,7 +114,6 @@ class DmozSpider(scrapy.Spider):
 下面在我们的spider中加入下面代码：
 ```python
 import scrapy
-
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
     allowed_domains = ["dmoz.org"]
@@ -125,7 +121,6 @@ class DmozSpider(scrapy.Spider):
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
     ]
-
     def parse(self, response):
         for sel in response.xpath('//ul/li'):
             title = sel.xpath('a/text()').extract()
@@ -143,9 +138,7 @@ class DmozSpider(scrapy.Spider):
 `Item` 对象是自定义的python字典。我们可以使用标准的字典语法来获取到其每个字段的值(字段即是我们之前用Field赋值的属性)。一般来说，Spider将会将爬取到的数据以 Item对象返回。所以为了将爬取的数据返回，我们最终的代码将是:
 ```python
 import scrapy
-
 from tutorial.items import DmozItem
-
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
     allowed_domains = ["dmoz.org"]
@@ -153,7 +146,6 @@ class DmozSpider(scrapy.Spider):
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
     ]
-
     def parse(self, response):
         for sel in response.xpath('//ul/li'):
             item = DmozItem()
@@ -163,7 +155,7 @@ class DmozSpider(scrapy.Spider):
             yield item
 ```
 现在对 dmoz.org 进行爬取将会产生 `DmozItem` 对象:
-![DmozItem](http://ouy59qaqh.bkt.clouddn.com/scrapy_4.png)
+![DmozItem](/img/scrapy_4.png)
 
 ### 保存爬取到的数据
 

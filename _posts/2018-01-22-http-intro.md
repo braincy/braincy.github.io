@@ -47,7 +47,7 @@ ARP是一种用以解析地址的协议，根据通信方的IP地址就可以反
 
 若在握手过程中某个阶段莫名中断，TCP协议会再次以相同顺序发送相同的数据包。
 
-![TCP三次握手](http://ouy59qaqh.bkt.clouddn.com/tcp_three-way_handshaking.jpg)
+![TCP三次握手](/img/tcp_three-way_handshaking.jpg)
 
 除了上述三次握手，TCP协议还有其他各种手段来保证通信的可靠性。
 
@@ -62,12 +62,12 @@ DNS（Domain Name System）服务是和HTTP协议一样位于应用层的协议�
 
 为了解决上述问题，DNS服务应运而生。DNS协议提供通过域名查找IP地址，或逆向从IP地址反差域名的服务。
 
-![DNS示意图](http://ouy59qaqh.bkt.clouddn.com/DNS.jpg)
+![DNS示意图](/img/DNS.jpg)
 
 ## 各种协议与HTTP协议的关系
 
 通过下面这张图可以了解下IP协议、TCP协议和DNS服务在使用HTTP协议的通信过程中各自发挥了哪些作用。
 
-![HTTP协议通信过程](http://ouy59qaqh.bkt.clouddn.com/HTTP_1.jpg)
+![HTTP协议通信过程](/img/HTTP_1.jpg)
 
 参考：《图解HTTP》

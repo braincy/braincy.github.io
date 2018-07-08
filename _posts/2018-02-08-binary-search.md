@@ -18,14 +18,14 @@ mathjax: true
 ## 算法介绍
 ### 典型的二分法
 #### 基本思想
-* 假设数据是按升序排序的，对于给定值 $key$，从序列的中间位置 $k$ 开始比较，如果当前位置 $arr[k]$ 的值等于 $key$，则查找成功。
-* 若 $key$ 小于当前位置值 $arr[k]$，则在数列的前半段 $arr[low,mid-1]$ 中查找。
-* 若 $key$ 大于当前位置值 $arr[k]$，则在数列的后半段 $arr[mid+1,high]$ 中继续查找。
+* 假设数据是按升序排序的，对于给定值 `key`，从序列的中间位置 `k` 开始比较，如果当前位置 `arr[k]` 的值等于 `key`，则查找成功。
+* 若 `key` 小于当前位置值 `arr[k]`，则在数列的前半段 `arr[low, mid-1]` 中查找。
+* 若 `key` 大于当前位置值 `arr[k]`，则在数列的后半段 `arr[mid+1, high]` 中继续查找。
 
-*直到找到为止，时间复杂度: $O(logN)$。*
+*直到找到为止，时间复杂度: `O(logN)`。*
 
 #### 算法实现
-```C++
+```
 int search(int *arr, int n, int key)
 {
     int left = 0, right = n - 1;
@@ -42,11 +42,11 @@ int search(int *arr, int n, int key)
 }
 ```
 ### 二分法变种
-数组中的数据可能重复，要求返回匹配的数据的最小（或最大）的下标；更进一步，需要找出数组中第一个大于 $key$ 的元素（也就是最小的大于 $key$ 的元素的）下标，等等。
+数组中的数据可能重复，要求返回匹配的数据的最小（或最大）的下标；更进一步，需要找出数组中第一个大于 `key` 的元素（也就是最小的大于 `key` 的元素的）下标，等等。
 
 #### 变种a：找出第一个与key相等的元素的位置
 #### 算法实现
-```C++
+```
 int searchFirstEqual(int *arr, int n, int key)
 {
     int left = 0, right = n - 1;
@@ -65,7 +65,7 @@ int searchFirstEqual(int *arr, int n, int key)
 
 #### 变种b：找出最后一个与key相等的元素的位置
 ##### 算法实现
-```C++
+```
 int searchLastEqual(int *arr, int n, int key) {
     int left = 0, right = n - 1;
     while(left < right) {
@@ -82,7 +82,7 @@ int searchLastEqual(int *arr, int n, int key) {
 ```
 #### 变种c：查找第一个大于Key的元素的位置
 ##### 算法实现
-```C++
+```
 int searchFirstLarger(int *arr, int n, int key) {
     int left = 0, right = n - 1;
     while(left < right) {
@@ -99,7 +99,7 @@ int searchFirstLarger(int *arr, int n, int key) {
 ```
 #### 变种d：查找最后一个小于Key的元素的位置
 ##### 算法实现
-```C++
+```
 int searchLastSmaller(int *arr, int n, int key) {
     int left = 0, right = n - 1;
     while(left < right) {
@@ -117,7 +117,7 @@ int searchLastSmaller(int *arr, int n, int key) {
 ## 算法应用
 ### Leetcode例题
 #### [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
-```C++
+```
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
@@ -139,10 +139,10 @@ public:
 
 *注：题目说了相邻元素不会相等，这个条件很重要。*
 
-* $nums[mid] < nums[mid + 1]$，说明 $mid$ 与后一个位置形成递增区间，则 $mid$ 后面一定存在峰且当前 $mid$ 一定不是峰，则 $left=mid+1$。
-* $nums[mid] > nums[mid + 1]$，说明 $mid$ 与后一个位置形成递减区间，则当前位置 $mid$ 就有可能是峰（也可能在其前面），则 $right=mid$。
+* `nums[mid] < nums[mid + 1]`，说明 `mid` 与后一个位置形成递增区间，则 `mid` 后面一定存在峰且当前 `mid` 一定不是峰，则 `left = mid + 1`。
+* `nums[mid] > nums[mid + 1]`，说明 `mid` 与后一个位置形成递减区间，则当前位置 `mid` 就有可能是峰（也可能在其前面），则 `right = mid`。
 
-```C++
+```
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
@@ -161,7 +161,7 @@ public:
 #### [278. First Bad Version](https://leetcode.com/problems/first-bad-version/description/)
 * 该题可抽象为`找出第一个与key相等的元素的位置`，即变种 $a$。
 
-```C++
+```
 // Forward declaration of isBadVersion API.
 bool isBadVersion(int version);
 

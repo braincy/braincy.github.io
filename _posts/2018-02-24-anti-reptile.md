@@ -103,7 +103,6 @@ def crawl_ips():
         selector = Selector(text=re.text)
         all_trs = selector.css("#ip_list tr")
 
-
         ip_list = []
         for tr in all_trs[1:]:
             speed = 999
@@ -129,7 +128,7 @@ def crawl_ips():
 ```
 
 采集结果如下所示：
-![mysql_content](http://ouy59qaqh.bkt.clouddn.com/proxy_ip.jpg)
+![mysql_content](/img/proxy_ip.jpg)
 
 接下来我们可以从数据库中随机获取IP，检查器可用性，从而维护我们的IP池，然后通过类似添加User-Agent Middleware的方法添加我们的代理IP Middleware，这样就可以实现代理IP访问。但经过测试，网上的免费IP可用性太差，建议选择付费IP，服务商还会提供API接口，不需要我们自己维护IP池。
 

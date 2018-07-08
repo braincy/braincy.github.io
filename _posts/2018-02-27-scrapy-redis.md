@@ -23,11 +23,11 @@ Scrapy是一个比较好用的Python爬虫框架，你只需要编写几个组�
 
 原生的Scrapy的架构是这样子的：
 
-![scrapy](http://ouy59qaqh.bkt.clouddn.com/scrapy_2.png)
+![scrapy](/img/scrapy_2.png)
 
 而Scrapy-redis的架构是下面这样的：
 
-![scrapy-redis](http://ouy59qaqh.bkt.clouddn.com/scrapy-redis.png)
+![scrapy-redis](/img/scrapy-redis.png)
 
 可以看到，Scrapy-redis就是将Scrapy的大部分中间状态保存到Redis当中，从而使多台机器上的爬虫可以实现通信，实现分布式爬虫。
 
@@ -956,6 +956,6 @@ spider的改动也不是很大，主要是通过connect接口，给spider绑定�
 
 ## 组件之间的关系
 
-![scrapy-redis-struct](http://ouy59qaqh.bkt.clouddn.com/scrapy-redis_struct.png)
+![scrapy-redis-struct](/img/scrapy-redis_struct.png)
 
 转自：[标点符](https://www.biaodianfu.com/)的[《使用Scrapy-redis实现分布式爬取》](https://www.biaodianfu.com/scrapy-redis.html)

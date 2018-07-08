@@ -131,9 +131,9 @@ class NovelItem(scrapy.Item):
 ## 效果截图
 
 ### 运行效果
-![运行截图](http://ouy59qaqh.bkt.clouddn.com/%E8%BF%90%E8%A1%8C%E6%88%AA%E5%9B%BE.jpg)
+![运行截图](/img/run-screen.jpg)
 
 ### 存储结果
-![存储结果](http://ouy59qaqh.bkt.clouddn.com/novel.jpg)
+![存储结果](/img/novel.jpg)
 
 项目源码在[这里](https://github.com/braincy/Spider_Practice/tree/master/novel)
