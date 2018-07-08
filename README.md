@@ -16,6 +16,6 @@ Runing on Github + Jekyll theme by [Gaohaoyang](https://github.com/Gaohaoyang/ga
 
 ## TODO
 - [x] ~~原博客历史文章迁移~~
-- [ ] 博客中的图片从七牛云转入github
-- [ ] 对迁移后不兼容的格式处理
+- [x] ~~博客中的图片从七牛云转入github~~
+- [x] ~~对迁移后不兼容的格式处理~~
 - [x] ~~为每篇博文添加摘要~~
