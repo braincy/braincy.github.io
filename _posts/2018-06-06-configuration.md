@@ -137,22 +137,54 @@ systemctl restart mongod.service
 systemctl enable mongod.service
 ```
 ### 访问权限控制
-MongoDB服务默认只绑定在本机IP上，即只有本机才能访问MongoDB，我们可以修改访问权限控制让外网也能访问。
-修改配置文件 `/etc/mongod.conf` 将其中的 `bindip:127.0.0.1` 注释即可。
+#### 配置用户名、密码
+首先进入命令行选择数据库：
+```shell
+> use admin
+switched to db admin
+```
+接下来用户名为admin，密码为admin123的用户，赋予最高权限。
+```shell
+> db.createUser({user: 'admin', pwd: 'admin123', roles: [{role: 'root', db: 'admin'}]})
+Successfully added user: {
+  "user" : "admin",
+  "roles" : [
+    {
+      "role" : "root",
+      "db" : "admin"
+    }
+  ]
+}
+```
+现在admin数据库的用户名、密码就配置成功了。
+
+#### 修改配置文件
+配置文件的路径为 `/etc/mongod.conf`：
+```
+# 配置可远程访问
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+
+# 权限认证配置
+security:
+  authorization: enabled
+```
+配置完成后，需要重启MongoDB服务，命令如下：
+```
+systemctl restart mongod
+```
+这样远程连接和权限认证就配置完成了。
 
 ## CentOS7安装Redis
-### 更改yum源
-备份你的原镜像文件，保证出错后可以恢复：
+### 添加EPEL仓库，然后更新yum源
 ```shell
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-```
-将CentOS的yum源更换为国内的阿里云源，下载新的 `CentOS-Base.repo` 到 `/etc/yum.repos.d/`：
-```shell
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum install epel-release
+yum update
 ```
 ### 安装Redis
 ```shell
-yum install redis
+yum install -y redis
 ```
 ### 设置Redis开机启动
 ```shell
@@ -160,6 +192,9 @@ systemctl enable redis.service
 ```
 ### 设置Redis密码
 打开文件 `/etc/redis.conf`，找到其中的 `# requirepass foobared`，去掉前面的 `#`，并把 `foobared` 改成你的密码。
+
+### 开启远程访问
+打开文件 `/etc/redis.conf`，将 `bind 127.0.0.1` 注释。
 
 ## CentOS7下Elastic Stack环境配置
 ### 安装jdk1.8
