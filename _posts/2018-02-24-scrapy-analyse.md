@@ -2,7 +2,7 @@
 layout: post
 title: Scrapy源码分析
 date: 2018-02-24 12:23:10
-tags: [scrapy, 源码分析]
+tags: [Scrapy, 源码分析]
 categories: 爬虫
 mathjax: true
 ---
