@@ -3,7 +3,7 @@ layout: post
 title: 正则表达式常用语法
 date: 2018-02-01 16:59:20
 tags: [正则]
-categories: python
+categories: Python
 mathjax: true
 ---
 
